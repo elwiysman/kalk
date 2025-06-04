@@ -1,0 +1,85 @@
+.integral-inputs {
+  margin: 20px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+  border-radius: var(--radius-md);
+  border: 2px solid #add8e6;
+  box-shadow: var(--shadow-sm);
+}
+
+.bounds-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.integral-preview {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-sm);
+  border: 1px solid #b8dce8;
+}
+
+.integral-preview p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-family: "Times New Roman", serif;
+}
+
+.dynamic-param-input,
+.dynamic-param-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.dynamic-param-input:focus,
+.dynamic-param-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.2);
+  outline: none;
+}
+
+.bounds-container .input-group {
+  margin: 0;
+}
+
+.bounds-container label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.bounds-container input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #add8e6;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.bounds-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.15);
+}
+
+.integral-preview sub,
+.integral-preview sup {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
