@@ -120,7 +120,6 @@ def health_check():
         "message": "Math Calculator API with Image Processing is running!",
         "features": [
             "Text-based calculations",
-            "Image-based calculations", 
             "Graph generation",
             "Solution visualization"
         ]
