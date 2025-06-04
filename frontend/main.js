@@ -11,7 +11,7 @@ import {
   initScrollToTop,
 } from "./scripts/ui.js";
 
-export const API_BASE_URL = "https://kalk-backend.onrender.com";
+export const API_BASE_URL = "http://localhost:5000";
 export let currentOperation = "aritmatika";
 export let isCalculating = false;
 
@@ -26,8 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
   updateDefiniteIntegralInputs();
 
   document.getElementById("calculate-button").addEventListener("click", () => {
-    const expression = document.getElementById("expression-input").value;
-    calculateExpression(expression);
+    document.getElementById("math-output").innerHTML =
+      "\\[x^2 + 2x + 1 = (x+1)^2\\]";
+    MathJax.typeset();
+    document.getElementById("plot-output").innerHTML =
+      '<img src="/KalkuMatika/static/grafik.png" alt="Sample Graph" />';
   });
 });
 
