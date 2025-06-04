@@ -1,20 +1,16 @@
-from flask import Flask, request, jsonify, Response, send_from_directory
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from validate import validate_input
 from steps import create_latex_steps
 from solve import solve_math
 from graph import generate_graph
 import sympy as sp
-import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
-app = Flask(__name__, static_folder="../frontend", static_url_path='')
+app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-@app.route('/')
-def index():
-    return send_from_directory(app.static_folder, 'main.html')
 
 @app.route('/calculate', methods=['POST'])
 def calculate_route():
@@ -63,7 +59,6 @@ def calculate_route():
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 400
 
-
 @app.route('/graph', methods=['POST'])
 def generate_graph_route():
     try:
@@ -83,38 +78,18 @@ def generate_graph_route():
 
 @app.route('/supported-operations', methods=['GET'])
 def get_supported_operations():
-    """
-    Endpoint untuk mendapatkan daftar operasi yang didukung
-    """
     operations = [
-        "aritmatika",
-        "persamaan", 
-        "faktorisasi",
-        "substitusi",
-        "statistika",
-        "pecahan",
-        "deret_aritmatika",
-        "deret_geometri", 
-        "limit",
-        "trigonometri",
-        "turunan",
-        "integral",
-        "integral_tentu",
-        "logaritma",
-        "fungsi"
+        "aritmatika", "persamaan", "faktorisasi", "substitusi", "statistika",
+        "pecahan", "deret_aritmatika", "deret_geometri", "limit", "trigonometri",
+        "turunan", "integral", "integral_tentu", "logaritma", "fungsi"
     ]
-    
     return jsonify({
         "supported_operations": operations,
         "total_operations": len(operations)
     })
 
-
 @app.route('/health', methods=['GET'])
 def health_check():
-    """
-    Health check endpoint
-    """
     return jsonify({
         "status": "healthy",
         "message": "Math Calculator API with Image Processing is running!",
@@ -125,11 +100,9 @@ def health_check():
         ]
     })
 
-
 @app.route('/status')
 def status():
     return "Math Calculator API with Image Processing is running!"
-
 
 if __name__ == '__main__':
     app.run(debug=True)
