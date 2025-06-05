@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KalkuMatika</title>
+    <link rel="stylesheet" href="main.css" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        svg: { fontCache: "global" },
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>🧮 Kalkulator Matematika</h1>
+        <p>
+          Solusi interaktif dengan langkah-langkah penyelesaian dan visualisasi
+        </p>
+      </header>
+
+      <main class="main-content">
+        <div class="calculator-section">
+          <section class="card input-section">
+            <h2 class="section-title">✨ Operasi Matematika</h2>
+
+            <div class="operation-buttons">
+              <button class="operation-btn active" data-operation="aritmatika">
+                🔢 Aritmatika
+              </button>
+              <button class="operation-btn" data-operation="persamaan">
+                ⚖️ Persamaan
+              </button>
+              <button class="operation-btn" data-operation="faktorisasi">
+                🔧 Faktorisasi
+              </button>
+              <button class="operation-btn" data-operation="substitusi">
+                🔄 Substitusi
+              </button>
+              <button class="operation-btn" data-operation="statistika">
+                📈 Statistika
+              </button>
+              <button class="operation-btn" data-operation="pecahan">
+                ➗ Pecahan
+              </button>
+              <button class="operation-btn" data-operation="deret_aritmatika">
+                📊 Deret Aritmatika
+              </button>
+              <button class="operation-btn" data-operation="deret_geometri">
+                📈 Deret Geometri
+              </button>
+              <button class="operation-btn" data-operation="limit">
+                ∞ Limit
+              </button>
+              <button class="operation-btn" data-operation="trigonometri">
+                📐 Trigonometri
+              </button>
+              <button class="operation-btn" data-operation="turunan">
+                d/dx Turunan
+              </button>
+              <button class="operation-btn" data-operation="integral">
+                ∫ Integral
+              </button>
+              <button class="operation-btn" data-operation="integral_tentu">
+                ∫₀¹ Integral Tentu
+              </button>
+              <button class="operation-btn" data-operation="logaritma">
+                log Logaritma
+              </button>
+              <button class="operation-btn" data-operation="fungsi">
+                🧮 Fungsi
+              </button>
+            </div>
+
+            <div class="input-group">
+              <label for="calcExpression">Masukkan Ekspresi Matematika:</label>
+              <input
+                type="text"
+                id="calcExpression"
+                placeholder="Contoh: 2x^2 + 3x + 1"
+              />
+              <div
+                id="calcError"
+                class="error-message"
+                style="display: none"
+              ></div>
+            </div>
+
+            <div
+              id="additionalParams"
+              class="additional-params"
+              style="display: none"
+            ></div>
+
+            <div
+              id="integralInputs"
+              class="integral-inputs"
+              style="display: none"
+            >
+              <div class="bounds-container">
+                <div class="input-group">
+                  <label for="lowerBound">Batas Bawah (a):</label>
+                  <input
+                    type="text"
+                    id="lowerBound"
+                    placeholder="0"
+                    value="0"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="upperBound">Batas Atas (b):</label>
+                  <input
+                    type="text"
+                    id="upperBound"
+                    placeholder="1"
+                    value="1"
+                  />
+                </div>
+              </div>
+              <div class="integral-preview">
+                <p>
+                  Akan menghitung: ∫<sub id="previewLower">0</sub
+                  ><sup id="previewUpper">1</sup> f(x) dx
+                </p>
+              </div>
+            </div>
+
+            <button id="calculateBtn" class="action-btn primary-btn">
+              <span class="btn-icon">🚀</span> Hitung Sekarang
+            </button>
+          </section>
+        </div>
+
+        <section class="card result-section">
+          <h2 class="section-title">📊 Hasil Perhitungan</h2>
+          <div id="calcResult" class="result-container">
+            <div class="result-placeholder">
+              <div class="placeholder-icon">🤔</div>
+              <p>Hasil perhitungan akan muncul di sini</p>
+            </div>
+            <div class="result-content" style="display: none">
+              <div class="main-result"></div>
+              <div class="steps-content"></div>
+            </div>
+          </div>
+        </section>
+        <div class="side-sections">
+          <section class="card graph-section">
+            <h2 class="section-title">📈 Visualisasi Grafik</h2>
+            <div class="input-group">
+              <label for="graphExpression">Masukkan Fungsi:</label>
+              <input
+                type="text"
+                id="graphExpression"
+                placeholder="Contoh: x^2"
+                value="x"
+              />
+              <div class="input-helper">
+                <small>Fungsi akan digambar dari x = -10 hingga x = 10</small>
+              </div>
+              <div
+                id="graphError"
+                class="error-message"
+                style="display: none"
+              ></div>
+            </div>
+            <button id="graphBtn" class="action-btn secondary-btn">
+              <span class="btn-icon">🎨</span> Buat Grafik
+            </button>
+            <div id="graphResult" class="graph-container">
+              <div class="graph-placeholder">
+                <div class="placeholder-icon">📊</div>
+                <p>Grafik akan muncul di sini</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <div id="loadingOverlay" class="loading-overlay" style="display: none">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Sedang memproses...</p>
+        </div>
+      </div>
+
+      <div id="helpModal" class="modal" style="display: none">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Panduan Penggunaan</h2>
+          <div id="helpContent"></div>
+        </div>
+      </div>
+
+      <button id="helpBtn" class="help-btn" title="Panduan Penggunaan">
+        ❓
+      </button>
+
+      <div id="notification" class="notification" style="display: none"></div>
+    </div>
+    <button
+      id="scrollToTopBtn"
+      class="scroll-to-top-btn"
+      title="Kembali ke atas"
+    >
+      <svg
+        class="scroll-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="18,15 12,9 6,15"></polyline>
+      </svg>
+    </button>
+
+    <script type="module" src="main.js"></script>
+    <script src="scripts/ui.js" type="module"></script>
+    <script src="scripts/api.js" type="module"></script>
+    <script src="scripts/events.js" type="module"></script>
+    <script src="scripts/operation.js" type="module"></script>
+    <script src="scripts/helper.js" type="module"></script>
+    <script src="scripts/history.js" type="module"></script>
+    <canvas id="particles"></canvas>
+  </body>
+</html>

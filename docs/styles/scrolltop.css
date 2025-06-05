@@ -1,0 +1,120 @@
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #87ceeb 0%, #4682b4 100%);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  backdrop-filter: blur(7px);
+  border: 2px solid rgb(234, 184, 184);
+}
+
+.scroll-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(70, 130, 180, 0.4);
+  background: linear-gradient(135deg, #4682b4 0%, #87ceeb 100%);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(-3px) scale(1.05);
+  transition-duration: 0.1s;
+}
+
+.scroll-icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+  stroke-width: 2.5;
+}
+
+.scroll-to-top-btn:hover .scroll-icon {
+  transform: translateY(-2px);
+  animation: bounce 0.6s ease-in-out;
+}
+
+.scroll-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    transform: translateY(-2px);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+  80% {
+    transform: translateY(-4px);
+  }
+}
+
+.scroll-to-top-btn.pulse {
+  animation: pulseEffect 0.6s ease-out;
+}
+
+@keyframes pulseEffect {
+  0% {
+    transform: translateY(20px) scale(0.8);
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(70, 130, 180, 0.5);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+  }
+}
+
+.scroll-to-top-btn::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #87ceeb, #4682b4) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-to-top-btn:hover::before {
+  opacity: 0.6;
+}
+
+.scroll-to-top-btn:focus {
+  outline: none;
+  box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3),
+    0 0 0 3px rgba(135, 206, 235, 0.4);
+}
